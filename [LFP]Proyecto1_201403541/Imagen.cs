@@ -73,7 +73,8 @@ namespace _LFP_Proyecto1_201403541
             {
                 try
                 {
-                    System.Diagnostics.Process.Start(ruta + "\\Imagen\\imagen.png");
+                    //System.Diagnostics.Process.Start(ruta + "\\Imagen\\imagen.png");
+                    MessageBox.Show("Imagen Creada Correctamente.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception e)
                 {

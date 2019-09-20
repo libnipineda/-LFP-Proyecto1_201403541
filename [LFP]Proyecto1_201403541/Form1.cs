@@ -146,19 +146,22 @@ namespace _LFP_Proyecto1_201403541
 
                 string remito = "Autorizo: Uzzi Libni Aarón Pineda Solórzano.";
                 string envio = "Fecha:" + DateTime.Now.ToString();
+                string url = @"C:\\Users\\libni\\OneDrive\\Imágenes\\logo_institucional.png";
+
+                System.Drawing.Image image = System.Drawing.Image.FromFile(url);
+                iTextSharp.text.Image pdfImage = iTextSharp.text.Image.GetInstance(image, System.Drawing.Imaging.ImageFormat.Png);
+                pdfImage.ScaleAbsolute(189f, 130f);
 
                 Chunk chunk = new Chunk("Reporte De competitividad", FontFactory.GetFont("ARIAL", 20, iTextSharp.text.Font.BOLD));
+                doc.Add(pdfImage);
                 doc.Add(new Paragraph(chunk));
-                doc.Add(new Paragraph("                       "));
-                doc.Add(new Paragraph("                       "));
+                doc.Add(new Paragraph("                       "));                
                 doc.Add(new Paragraph("------------------------------------------------------------------------------------------"));
                 doc.Add(new Paragraph("Proyecto Lenguajes Formales y de Programación"));
                 doc.Add(new Paragraph(remito));
                 doc.Add(new Paragraph(envio));
                 doc.Add(new Paragraph("------------------------------------------------------------------------------------------"));
-                doc.Add(new Paragraph("                       "));
-                doc.Add(new Paragraph("                       "));
-                doc.Add(new Paragraph("                       "));
+                doc.Add(new Paragraph("                       "));                
                 GenerarDocumento(doc);
                 doc.AddCreationDate();
                 doc.Add(new Paragraph("______________________________________________", FontFactory.GetFont("ARIAL", 20, iTextSharp.text.Font.BOLD)));
@@ -170,7 +173,10 @@ namespace _LFP_Proyecto1_201403541
 
         public void GenerarDocumento(Document document)
         {
-            
+            string acceso = @"C:\\Users\\libni\\OneDrive\\Escritorio\\Imagen\\imagen.png";
+            System.Drawing.Image image = System.Drawing.Image.FromFile(acceso);
+            iTextSharp.text.Image pdfImage = iTextSharp.text.Image.GetInstance(image, System.Drawing.Imaging.ImageFormat.Png);
+            document.Add(pdfImage);
         }
 
         private void nuevaPestañaToolStripMenuItem_Click(object sender, EventArgs e)

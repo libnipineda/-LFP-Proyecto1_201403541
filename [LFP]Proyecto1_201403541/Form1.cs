@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.Diagnostics;
 
 namespace _LFP_Proyecto1_201403541
 {
@@ -103,21 +106,71 @@ namespace _LFP_Proyecto1_201403541
             enviar.Reporte1();
             enviar.Reporte2();
 
-            //Imagen imagen = new Imagen();
-            //imagen.Graficar(enviar.ListaC); // Enviar el listado de los nodos.
-            //imagen.AbrirG();
+            Imagen imagen = new Imagen();
+            imagen.Graficar(enviar.ListaC); // Enviar el listado de los nodos.
+            imagen.AbrirG();
 
-            //string acceso = @"C:\\Users\\libni\\OneDrive\\Escritorio\\Imagen\\imagen.png";
-            //// mostrar la imagen creada en el picturebox
-            //pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            //Bitmap picture = new Bitmap(acceso);
+            string acceso = @"C:\\Users\\libni\\OneDrive\\Escritorio\\Imagen\\imagen.png";
+            // mostrar la imagen creada en el picturebox
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            Bitmap picture = new Bitmap(acceso);
 
-            //pictureBox1.Image = (Image)picture;
+            pictureBox1.Image = (System.Drawing.Image)picture;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            To_pdf();
+        }
 
+        private void To_pdf()
+        {
+            Document doc = new Document(PageSize.LETTER.Rotate(), 10, 10, 10, 10);
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "[LFP]PROYECTO REPORTE NO.1";
+            save.DefaultExt = "pdf";
+            save.Filter = "pdf Files (*.pdf)|*.pdf| All Files(*.*)|*.*";
+            save.FilterIndex = 2;
+            string filename = " ";
+
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                filename = save.FileName;
+            }
+
+            if (filename.Trim() != "")
+            {
+                FileStream file = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
+                PdfWriter.GetInstance(doc, file);
+                doc.Open();
+
+                string remito = "Autorizo: Uzzi Libni Aarón Pineda Solórzano.";
+                string envio = "Fecha:" + DateTime.Now.ToString();
+
+                Chunk chunk = new Chunk("Reporte De competitividad", FontFactory.GetFont("ARIAL", 20, iTextSharp.text.Font.BOLD));
+                doc.Add(new Paragraph(chunk));
+                doc.Add(new Paragraph("                       "));
+                doc.Add(new Paragraph("                       "));
+                doc.Add(new Paragraph("------------------------------------------------------------------------------------------"));
+                doc.Add(new Paragraph("Proyecto Lenguajes Formales y de Programación"));
+                doc.Add(new Paragraph(remito));
+                doc.Add(new Paragraph(envio));
+                doc.Add(new Paragraph("------------------------------------------------------------------------------------------"));
+                doc.Add(new Paragraph("                       "));
+                doc.Add(new Paragraph("                       "));
+                doc.Add(new Paragraph("                       "));
+                GenerarDocumento(doc);
+                doc.AddCreationDate();
+                doc.Add(new Paragraph("______________________________________________", FontFactory.GetFont("ARIAL", 20, iTextSharp.text.Font.BOLD)));
+                doc.Add(new Paragraph("Firma", FontFactory.GetFont("ARIAL", 20, iTextSharp.text.Font.BOLD)));
+                doc.Close();
+                Process.Start(filename);
+            }
+        }
+
+        public void GenerarDocumento(Document document)
+        {
+            
         }
 
         private void nuevaPestañaToolStripMenuItem_Click(object sender, EventArgs e)

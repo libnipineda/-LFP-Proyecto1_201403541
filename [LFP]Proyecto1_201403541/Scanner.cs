@@ -212,23 +212,17 @@ namespace _LFP_Proyecto1_201403541
 
         public void Reporte2()
         {
-            try
-            {
-                if (ListaB.Count  != 0)
-                {
-                    Html html = new Html();
-                    html.ReporteETKN(ListaB);
-                    Process.Start(@"C:\Users\libni\OneDrive\Escritorio\ReporteError.html");
-                }
-                else
-                {
-                    MessageBox.Show("No se encontro errores.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se pudo abrir el reporte de errores.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           if (ListaB.Count  != 0)
+           {
+               Html html = new Html();
+               html.ReporteETKN(ListaB);
+               Process.Start(@"C:\Users\libni\OneDrive\Escritorio\ReporteError.html");
+           }
+           else
+           {
+               MessageBox.Show("No se encontro errores.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+           }
+           
         }
 
         public void EnviarDatos()

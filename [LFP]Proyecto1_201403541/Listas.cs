@@ -34,14 +34,4 @@ namespace _LFP_Proyecto1_201403541
         public string lex = "";
         public string Etkn = "";
     }
-
-    class Informacion
-    {
-        public string nombreg;
-        public string nombrec;
-        public string nombrep;
-        public int poblacion;
-        public int saturacion;
-        public string url;
-    }
 }

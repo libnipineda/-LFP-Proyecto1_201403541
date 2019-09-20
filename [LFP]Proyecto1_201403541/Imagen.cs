@@ -36,7 +36,7 @@ namespace _LFP_Proyecto1_201403541
         public void Graficar(Object datos)
         {
             List<Continente> con = (List<Continente>)datos;            
-            
+
             grafo = new StringBuilder();
             String rdot = ruta + "\\Imagen\\imagen.dot";
             String rpng = ruta + "\\Imagen\\imagen.png";
@@ -51,15 +51,15 @@ namespace _LFP_Proyecto1_201403541
 
                 grafo.Append(start + "->" + cont + ";");
                 List<Pais> aux = temp.ListaPais1;
-                for (int i=0; i < aux.Count; i++)
+                for (int i = 0; i < aux.Count; i++)
                 {
                     a = aux[i].Nombre;
                     s = Convert.ToString(aux[i].Saturacion);
 
                     grafo.Append(cont + "->" + a + ";");
                     grafo.Append(a + "[shape=record label=\"{" + a + "|" + s + "}\"style=filled]");
-                }                
-                    
+                }
+
                 grafo.Append(start + "[shape=Mdiamond];");
                 grafo.Append(cont + "[shape=record style=filled];");
             }            

@@ -15,7 +15,7 @@ namespace _LFP_Proyecto1_201403541
 
         string nomgraf, nomcon, nomp, pob, satu, url;
 
-        int tipo = 0;
+        int tipo = 0, tipoP = 0;
         /* valores que puede tomar la variable tipo
          * 1: nombre de la grafica.
          * 2: nombre del continente.
@@ -77,15 +77,15 @@ namespace _LFP_Proyecto1_201403541
             for (int i = 0; i < ListaB.Count; i++)
             {
                 string aux = ListaB[i].lexema;
-                switch (tipo)
+                switch (tipoP)
                 {
                     case 0:
-                        if (aux.Equals("pais")) { tipo = 1; }
-                        else if (aux.Equals("poblacion")) { tipo = 2; temp = true; }
-                        else if (aux.Equals("saturacion")) { tipo = 3; temp = true; }
-                        else if (aux.Equals("bandera")) { tipo = 4; temp = true; }
+                        if (aux.Equals("pais")) { tipoP = 3; }
+                        else if (aux.Equals("poblacion")) { tipoP = 4; temp = true; }
+                        else if (aux.Equals("saturacion")) { tipoP = 5; temp = true; }
+                        else if (aux.Equals("bandera")) { tipoP = 6; temp = true; }
                         break;
-                    case 1:
+                    case 3:
                         if (aux.Equals("nombre")) { temp = true; }
                         if (temp)
                         {
@@ -94,37 +94,8 @@ namespace _LFP_Proyecto1_201403541
                                 nomp = ListaB[i].lexema;
                                 temp = false;
                                 AgregarDatos();
-                                tipo = tipo - 1;
-                                tipo = 0;
-                            }
-                        }
-                        break;
-
-                    case 2:
-                        if (temp)
-                        {
-                            if (ListaB[i].tkn.Equals("Numero."))
-                            {
-                                i--;
-                                pob = ListaB[i].lexema;
-                                AgregarDatos();
-                                tipo = tipo - 1;
-                                tipo = 0;
-                                temp = false;
-                            }
-                        }
-                        break;
-
-                    case 3:
-                        if (temp)
-                        {
-                            if (ListaB[i].tkn.Equals("Numero."))
-                            {
-                                satu = ListaB[i].lexema;
-                                AgregarDatos();
-                                tipo = tipo - 1;
-                                tipo = 0;
-                                temp = false;
+                                tipoP = tipoP - 1;
+                                tipoP = 0;
                             }
                         }
                         break;
@@ -132,12 +103,41 @@ namespace _LFP_Proyecto1_201403541
                     case 4:
                         if (temp)
                         {
+                            if (ListaB[i].tkn.Equals("Numero."))
+                            {
+                                i--;
+                                pob = ListaB[i].lexema;
+                                AgregarDatos();
+                                tipoP = tipoP - 1;
+                                tipoP = 0;
+                                temp = false;
+                            }
+                        }
+                        break;
+
+                    case 5:
+                        if (temp)
+                        {
+                            if (ListaB[i].tkn.Equals("Numero."))
+                            {
+                                satu = ListaB[i].lexema;
+                                AgregarDatos();
+                                tipoP = tipoP - 1;
+                                tipoP = 0;
+                                temp = false;
+                            }
+                        }
+                        break;
+
+                    case 6:
+                        if (temp)
+                        {
                             if (ListaB[i].tkn.Equals("Cadena"))
                             {
                                 url = ListaB[i].lexema;
                                 AgregarDatos();
-                                tipo = tipo - 1;
-                                tipo = 0;
+                                tipoP = tipoP - 1;
+                                tipoP = 0;
                                 temp = false;
                             }
                         }
@@ -168,12 +168,12 @@ namespace _LFP_Proyecto1_201403541
             {
                 Pais pais = new Pais(nomp, Convert.ToInt32(pob), Convert.ToInt32(satu), url);
                 ListaP.Add(pais);
-
-                //Console.WriteLine("Valores obtenidos para la clase pais.");
-                //Console.WriteLine("nombre pais: " + nomp);
-                //Console.WriteLine("poblacion: " + pob);
-                //Console.WriteLine("saturacion: " + satu);
-                //Console.WriteLine("bandera: " + url);
+                
+                Console.WriteLine("Valores obtenidos para la clase pais.");                
+                Console.WriteLine("nombre pais: " + nomp);
+                Console.WriteLine("poblacion: " + pob);
+                Console.WriteLine("saturacion: " + satu);
+                Console.WriteLine("bandera: " + url);
             }
             else { Console.WriteLine("No hay valores a agregar en la lista de paises."); }
         }        

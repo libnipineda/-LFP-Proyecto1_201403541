@@ -96,16 +96,16 @@ namespace _LFP_Proyecto1_201403541
             enviar.Reporte1();
             enviar.Reporte2();
 
-            //Imagen imagen = new Imagen();
-            //imagen.Graficar(enviar.ListaC); // Enviar el listado de los nodos.
-            //imagen.AbrirG();
+            Imagen imagen = new Imagen();
+            imagen.Graficar(enviar.ListaC); // Enviar el listado de los nodos.
+            imagen.AbrirG();
 
-            //string acceso = @"C:\\Users\\libni\\OneDrive\\Escritorio\\Imagen\\imagen.png";
-            //// mostrar la imagen creada en el picturebox
-            //pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            //Bitmap picture = new Bitmap(acceso);
+            string acceso = @"C:\\Users\\libni\\OneDrive\\Escritorio\\Imagen\\imagen.png";
+            // mostrar la imagen creada en el picturebox
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            Bitmap picture = new Bitmap(acceso);
 
-            //pictureBox1.Image = (System.Drawing.Image)picture;
+            pictureBox1.Image = (System.Drawing.Image)picture;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -154,6 +154,10 @@ namespace _LFP_Proyecto1_201403541
                 doc.Add(new Paragraph("                       "));                
                 GenerarDocumento(doc);
                 doc.AddCreationDate();
+                doc.Add(new Paragraph("Continente al cual pertenece el pais: "));
+                doc.Add(new Paragraph("Nombre del pais: "));
+                doc.Add(new Paragraph("Poblacion: "));
+                doc.Add(new Paragraph("bandera: "));
                 doc.Add(new Paragraph("______________________________________________", FontFactory.GetFont("ARIAL", 20, iTextSharp.text.Font.BOLD)));
                 doc.Add(new Paragraph("Firma", FontFactory.GetFont("ARIAL", 20, iTextSharp.text.Font.BOLD)));
                 doc.Close();

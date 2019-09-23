@@ -12,6 +12,8 @@ namespace _LFP_Proyecto1_201403541
     {
         string ruta;
         StringBuilder grafo;
+        private List<Continente> con;
+
 
         public Imagen()
         {
@@ -35,7 +37,7 @@ namespace _LFP_Proyecto1_201403541
 
         public void Graficar(Object datos)
         {
-            List<Continente> con = (List<Continente>)datos;            
+            this.con = (List<Continente>)datos;            
 
             grafo = new StringBuilder();
             String rdot = ruta + "\\Imagen\\imagen.dot";
@@ -44,6 +46,7 @@ namespace _LFP_Proyecto1_201403541
             grafo.Append("digraph structs{");
             //grafo.Append("rankdir = TB;");
             //grafo.Append("node [shape = record];");
+
             foreach (Continente temp in con)
             {
                 start = temp.Grafica;
@@ -66,6 +69,8 @@ namespace _LFP_Proyecto1_201403541
             grafo.Append("}");
             this.Generardot(rdot, rpng);
         }
+
+        internal List<Continente> Lst_Con { get => con; set => con = value; }
 
         public void AbrirG()
         {

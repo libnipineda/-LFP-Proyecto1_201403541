@@ -87,12 +87,12 @@ namespace _LFP_Proyecto1_201403541
                         break;
 
                     case 4:
-                        if (aux.Equals("poblacion"))
+                        if (aux.Equals("poblacion")) { temp = true; }
+                        if(temp)
                         {
                             if (ListaA[i].tkn.Equals("Numero."))
                             {
-                                pob = aux;
-                                temp = false;
+                                pob = ListaA[i].lexema;
                                 tipo = 5;
                             }
                         }
@@ -102,28 +102,28 @@ namespace _LFP_Proyecto1_201403541
                         break;
 
                     case 5:
-                        if (aux.Equals("saturacion"))
+                        if (aux.Equals("saturacion")) { temp = true; }
+                        if (temp)
                         {
                             if (ListaA[i].tkn.Equals("Numero."))
                             {
-                                satu = aux;
-                                temp = false;
+                                satu = ListaA[i].lexema;
                                 tipo = 6;
                             }
                         }
-                        else if (aux.Equals("poblacion")) { tipo = 4; continue; }                        
+                        else if (aux.Equals("poblacion")) { tipo = 4; continue; }
                         else if (aux.Equals("bandera")) { tipo = 6; continue; }
                         else { tipo = 7; continue; }
                         break;
 
-                    case 6:                        
-                        if (aux.Equals("bandera"))
+                    case 6:
+                        if (aux.Equals("bandera")) { temp = true; }
+                        if (temp)
                         {
                             if (ListaA[i].tkn.Equals("Cadena"))
                             {
-                                url = aux;
-                                temp = false;
-                                tipo = 4;
+                                url = ListaA[i].lexema;
+                                tipo = 7;
                             }
                         }
                         else if (aux.Equals("poblacion")) { tipo = 4; continue; }
@@ -157,17 +157,17 @@ namespace _LFP_Proyecto1_201403541
 
         public void Datos(string nombre, int poblacion, int porcentaje, string direc)
         {
-            if (nomp != null && pob != null && satu != null && url != null)
-            {
-                Pais pais = new Pais(nomp, Convert.ToInt32(pob), Convert.ToInt32(satu), url);
-                ListaP.Add(pais);
+            //if (nomp != null && pob != null && satu != null && url != null)
+            //{
+            Pais pais = new Pais(nomp, Convert.ToInt32(pob), Convert.ToInt32(satu), url);
+            ListaP.Add(pais);
 
-                Console.WriteLine("Valores obtenidos para la clase pais.");
-                Console.WriteLine("nombre pais: " + nombre);
-                Console.WriteLine("poblacion: " + poblacion);
-                Console.WriteLine("saturacion: " + porcentaje);
-                Console.WriteLine("bandera: " + direc);
-            }
+            //Console.WriteLine("Valores obtenidos para la clase pais.");
+            //Console.WriteLine("nombre pais: " + nombre);
+            //Console.WriteLine("poblacion: " + poblacion);
+            //Console.WriteLine("saturacion: " + porcentaje);
+            //Console.WriteLine("bandera: " + direc);
+            //}
         }        
 
     }

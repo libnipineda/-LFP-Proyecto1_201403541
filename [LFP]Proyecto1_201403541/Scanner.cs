@@ -227,7 +227,7 @@ namespace _LFP_Proyecto1_201403541
         public void EnviarDatos()
         {
             Funcionalidad fun = new Funcionalidad();
-            ListaC = fun.ObtenerInfo1(ListaA);         
+            ListaC = fun.ObtenerInfo1(ListaA);
         }
     }
 }

@@ -422,5 +422,10 @@ namespace _LFP_Proyecto1_201403541
                 MessageBox.Show("Error al encontrar manual de usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void tabControl1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {            
+            tabControl1.TabPages.Remove(this.tabControl1.SelectedTab);
+        }
     }
 }

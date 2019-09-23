@@ -38,9 +38,9 @@ namespace _LFP_Proyecto1_201403541
                         if (aux.Equals("grafica")) { tipo = 1; continue; }
                         else if (aux.Equals("continente")) { tipo = 2; continue; }
                         else if (aux.Equals("pais")) { tipo = 3; continue; }
-                        else if (aux.Equals("poblacion")) { tipo = 4; continue; }
-                        else if (aux.Equals("saturacion")) { tipo = 5; continue; }
-                        else if (aux.Equals("bandera")) { tipo = 6; continue; }
+                        //else if (aux.Equals("poblacion")) { tipo = 4; continue; }
+                        //else if (aux.Equals("saturacion")) { tipo = 5; continue; }
+                        //else if (aux.Equals("bandera")) { tipo = 6; continue; }
                         break;
 
                     case 1:
@@ -72,64 +72,70 @@ namespace _LFP_Proyecto1_201403541
                         }
                         break;
 
-                    case 3:                        
+                    case 3:
                         if (aux.Equals("nombre")) { temp = true; }
                         if (temp)
                         {
                             if (ListaA[i].tkn.Equals("Cadena"))
                             {
                                 nomp = ListaA[i].lexema;
-                                temp = false;
-                                Datos();
-                                tipo = tipo - 1;
-                                tipo = 0;
+                                //temp = false;
+                                //tipo = tipo - 1;
+                                tipo = 4;
                             }
                         }
                         break;
 
                     case 4:
-                        temp = true;
-                        if (temp)
+                        if (aux.Equals("poblacion"))
                         {
                             if (ListaA[i].tkn.Equals("Numero."))
                             {
                                 pob = aux;
                                 temp = false;
-                                Datos();
-                                tipo = tipo - 1;
-                                tipo = 0;
+                                tipo = 5;
                             }
-                        }                       
+                        }
+                        else if (aux.Equals("saturacion")) { tipo = 5; continue; }
+                        else if (aux.Equals("bandera")) { tipo = 6; continue; }
+                        else { tipo = 7; continue; }
                         break;
 
                     case 5:
-                        temp = true;
-                        if (temp)
+                        if (aux.Equals("saturacion"))
                         {
                             if (ListaA[i].tkn.Equals("Numero."))
                             {
                                 satu = aux;
                                 temp = false;
-                                Datos();
-                                tipo = tipo - 1;
-                                tipo = 0;
+                                tipo = 6;
                             }
-                        }                        
+                        }
+                        else if (aux.Equals("poblacion")) { tipo = 4; continue; }                        
+                        else if (aux.Equals("bandera")) { tipo = 6; continue; }
+                        else { tipo = 7; continue; }
                         break;
 
-                    case 6:
-                        temp = true;
-                        if (temp)
+                    case 6:                        
+                        if (aux.Equals("bandera"))
                         {
                             if (ListaA[i].tkn.Equals("Cadena"))
                             {
                                 url = aux;
                                 temp = false;
-                                Datos();
-                                tipo = tipo - 1;
-                                tipo = 0;
+                                tipo = 4;
                             }
-                        }                        
+                        }
+                        else if (aux.Equals("poblacion")) { tipo = 4; continue; }
+                        else if (aux.Equals("saturacion")) { tipo = 5; continue; }
+                        else { tipo = 7; continue; }
+                        break;
+
+                    case 7:
+                        temp = false;
+                        Datos(nomp, Convert.ToInt32(pob), Convert.ToInt32(satu), url);
+                        nomp = ""; pob = ""; satu = ""; url = "";
+                        tipo = tipo - 1; tipo = 0;
                         break;
                 }
             }
@@ -149,7 +155,7 @@ namespace _LFP_Proyecto1_201403541
             }            
         }
 
-        public void Datos()
+        public void Datos(string nombre, int poblacion, int porcentaje, string direc)
         {
             if (nomp != null && pob != null && satu != null && url != null)
             {
@@ -157,10 +163,10 @@ namespace _LFP_Proyecto1_201403541
                 ListaP.Add(pais);
 
                 Console.WriteLine("Valores obtenidos para la clase pais.");
-                Console.WriteLine("nombre pais: " + nomp);
-                Console.WriteLine("poblacion: " + pob);
-                Console.WriteLine("saturacion: " + satu);
-                Console.WriteLine("bandera: " + url);
+                Console.WriteLine("nombre pais: " + nombre);
+                Console.WriteLine("poblacion: " + poblacion);
+                Console.WriteLine("saturacion: " + porcentaje);
+                Console.WriteLine("bandera: " + direc);
             }
         }        
 

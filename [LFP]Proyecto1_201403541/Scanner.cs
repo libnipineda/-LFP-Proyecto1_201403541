@@ -11,8 +11,7 @@ namespace _LFP_Proyecto1_201403541
     class Scanner
     {
         List<Listas> ListaA = new List<Listas>();
-        List<Elista> ListaB = new List<Elista>();
-        public List<Pais> ListaP = new List<Pais>();
+        List<Elista> ListaB = new List<Elista>();        
         public List<Continente> ListaC = new List<Continente>();
 
         int idtkn;
@@ -228,8 +227,7 @@ namespace _LFP_Proyecto1_201403541
         public void EnviarDatos()
         {
             Funcionalidad fun = new Funcionalidad();
-            ListaC = fun.ObtenerInfo1(ListaA);
-            ListaP = fun.ObtenerInfo2(ListaA);
+            ListaC = fun.ObtenerInfo1(ListaA);         
         }
     }
 }

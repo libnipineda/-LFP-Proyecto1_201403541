@@ -57,7 +57,7 @@ namespace _LFP_Proyecto1_201403541
                     s = Convert.ToString(aux[i].Saturacion);
 
                     grafo.Append(cont + "->" + a + ";");
-                    grafo.Append(a + "[shape=record label=\"{" + a + "|" + s + "}\"style=filled]");
+                    //grafo.Append(a + "[shape=record label=\"{" + a + "|" + s + "}\"style=filled]");
                 }
 
                 grafo.Append(start + "[shape=Mdiamond];");

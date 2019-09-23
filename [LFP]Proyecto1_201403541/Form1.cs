@@ -76,17 +76,7 @@ namespace _LFP_Proyecto1_201403541
         {
             MessageBox.Show(
                "LFP PROYECTO No.1\n Uzzi Libni Aarón Pineda Solórzano\n 201403541",
-               "Acerca de...");
-            try
-            {
-                System.Diagnostics.Process aux = new System.Diagnostics.Process();
-                aux.StartInfo.FileName = "E:\\Lenguajes\\Segundo_semestre\\[LFP]Proyecto1_201403541\\Manual de Usuario.pdf";
-                aux.Start(); aux.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error al encontrar manual de usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+               "Acerca de...");           
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -404,6 +394,33 @@ namespace _LFP_Proyecto1_201403541
                 Console.WriteLine("Error en metodo pintaNumeros");
             }
         }
-        
+
+        private void verLaAyudaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process aux = new System.Diagnostics.Process();
+                aux.StartInfo.FileName = "E:\\Lenguajes\\Segundo_semestre\\[LFP]Proyecto1_201403541\\Manual de Usuario.pdf";
+                aux.Start(); aux.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al encontrar manual de usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void soporteTécnicoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process aux = new System.Diagnostics.Process();
+                aux.StartInfo.FileName = @"E:\\Lenguajes\\Segundo_semestre\\[LFP] Proyecto1_201403541\\Manual Técnico.pdf";
+                aux.Start(); aux.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al encontrar manual de usuario", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
